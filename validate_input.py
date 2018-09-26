@@ -5,82 +5,33 @@ class ValidateInput:
 
     def __init__(self, input_data):
         self.input_data = input_data
+        self.error = {}
 
-    def is_password_greater_than_four(self):
+    def validate_password(self):
         """
         Checks if the password length is not less than 4 charaters
 
         Returns:
             bool: True for success, False otherwise
         """
-        if len(self.input_data["password"]) >= 4:
-            return True
-        return False
+        lowercase_letter = re.search(r"[a-z]", self.input_data.password)
+        uppercase_letter = re.search(r"[A-Z]", self.input_data.password)
+        contain_digit = re.search(r"[0-9]", self.input_data.password)
+        special_char = re.search(
+            r"[@!#$%^&*()_+=|?/\-~}{;:.<>,]", self.input_data.password)
 
-    def is_password_contain_small_letter(self):
-        """
-        Checks if the password cotains a small letter
+        if len(self.input_data.password) < 4 or None in [lowercase_letter, uppercase_letter, contain_digit, special_char]:
+            return False
+        return True
 
-        Returns:
-            bool: True for success, False otherwise
-        """
-        if re.search(r"[a-z]", self.input_data["password"]):
-            return True
-        return False
-
-    def is_password_contain_capital_letter(self):
-        """
-        Checks if the password cotains a capital letter
-
-        Returns:
-            bool: True for success, False otherwise
-        """
-        if re.search(r"[A-Z]", self.input_data["password"]):
-            return True
-        return False
-
-    def is_password_contain_digit(self):
-        """
-        Checks if the password cotains a digit
-
-        Returns:
-            bool: True for success, False otherwise
-        """
-        if re.search(r"[0-9]", self.input_data["password"]):
-            return True
-        return False
-
-    def is_password_contain_special_char(self):
-        """
-        Checks if the password cotains a special character
-
-        Returns:
-            bool: True for success, False otherwise
-        """
-        if re.search(r"[@!#$%^&*()_+=|?/\-~}{;:.<>,]",
-                     self.input_data["password"]):
-            return True
-        return False
-
-    def is_username_greater_than_four(self):
+    def validate_username(self):
         """
         Checks if the username is greater or equal to four characters
 
         Returns:
             bool: True for success, False otherwise
         """
-        if len(self.input_data["username"]) >= 4:
-            return True
-        return False
-
-    def is_username_same_as_name(self):
-        """
-        Checks if the username is the same as the name
-
-        Returns:
-            bool: True for success, False otherwise
-        """
-        if self.input_data["username"] == self.input_data["name"]:
+        if len(self.input_data.username) < 4 or self.input_data.username == self.input_data.name:
             return False
         return True
 
@@ -92,7 +43,7 @@ class ValidateInput:
             bool: True for success, False otherwise
         """
         if re.search(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)",
-                     self.input_data["email"]):
+                     self.input_data.email):
             return True
         return False
 
@@ -103,6 +54,16 @@ class ValidateInput:
         Returns:
             bool: True for success, False otherwise
         """
-        if isinstance(self.input_data["age"], int) and self.input_data["age"] > 0:
+        if isinstance(self.input_data.age, int) and self.input_data.age > 0:
             return True
         return False
+
+    def validate_gender(self):
+        if self.input_data.gender == "Male" or self.input_data.gender == "Femal":
+            return True
+        return False
+
+    def validate_name(self):
+        if not self.input_data.name:
+            return False
+        return True

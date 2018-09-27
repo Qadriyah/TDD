@@ -9,7 +9,9 @@ class ValidateInput:
 
     def validate_password(self):
         """
-        Checks if the password length is not less than 4 charaters
+        Checks if the password length is not less than 4 charaters, 
+        contains a digit, an uppercase letter, a lowercase letter 
+        and a character
 
         Returns:
             bool: True for success, False otherwise
@@ -27,6 +29,7 @@ class ValidateInput:
     def validate_username(self):
         """
         Checks if the username is greater or equal to four characters
+        and not the same as name
 
         Returns:
             bool: True for success, False otherwise
@@ -37,7 +40,8 @@ class ValidateInput:
 
     def validate_email(self):
         """
-        Checks if the email is in the format johndoe@gmail.com
+        Checks if the email is a valid email and it's in 
+        the format johndoe@gmail.com
 
         Returns:
             bool: True for success, False otherwise
@@ -59,11 +63,23 @@ class ValidateInput:
         return False
 
     def validate_gender(self):
-        if self.input_data.gender == "Male" or self.input_data.gender == "Femal":
+        """
+        Checks if gender is either Male or Female
+
+        Returns:
+            bool: True for success, False otherwise
+        """
+        if self.input_data.gender == "Male" or self.input_data.gender == "Female":
             return True
         return False
 
     def validate_name(self):
+        """
+        Checks if name is not blank
+
+        Returns:
+            bool: True for success, False otherwise
+        """
         if not self.input_data.name:
             return False
         return True

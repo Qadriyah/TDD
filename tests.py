@@ -102,3 +102,10 @@ class TestUserRegistration(unittest.TestCase):
         self.app.login_user(self.user.email, self.user.password)
         response = self.app.change_email("mUkungu$.001", "berkins@yahoo.com")
         self.assertEqual(response, "Email changed successfully")
+
+    def test_authenticate_user(self):
+        """Tests if user exists"""
+        self.app.register_user(self.user, self.validator)
+        response = self.app.authenticate_user(
+            "becks@gmail.com", "mUkungu$.001")
+        self.assertEqual(response[0], True)

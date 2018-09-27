@@ -1,4 +1,6 @@
 import unittest
+from unittest.mock import patch
+
 from validate_input import ValidateInput
 from user import User
 from app import MainApp
@@ -71,7 +73,7 @@ class TestUserRegistration(unittest.TestCase):
         name = self.validator.validate_name()
         self.assertEqual(True, name, msg="Name must not be empty")
 
-    def test_registration(self):
+    def test_register_user(self):
         """Tests if the user is registered successfully"""
         response = self.app.register_user(self.user, self.validator)
         self.assertEqual(response, "User registered successfully")

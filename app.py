@@ -269,7 +269,9 @@ class MainApp:
         """
         user = self.users[self.session[0]]
         if user.password == password:
-            self.users[self.session[0]].email = new_email
+            self.users[new_email] = self.users.pop(self.session[0])
+            self.users[new_email].email = new_email
+            self.session.clear()
             self.session.append(new_email)
             return "Email changed successfully"
         return "Wrong password"

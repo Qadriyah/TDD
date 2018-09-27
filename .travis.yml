@@ -16,6 +16,3 @@ script:
 
 after_success:
   - coveralls
-
-  #  after_build:
-  - codeclimate-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

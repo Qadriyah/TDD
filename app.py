@@ -97,7 +97,11 @@ class MainApp:
 
     def register(self):
         """
-        Gets user input and registers a new user
+        Gets user input and invokes the register_user that 
+        handles the validations registers a new user
+
+        Returns:
+            function call: Call to itself
         """
         print("\nEnter your details to register\n")
         try:

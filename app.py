@@ -79,7 +79,7 @@ class MainApp:
                 print("[+] Logging out...")
                 time.sleep(2)
                 print("[+] {}\n".format(response))
-            return
+            return 1
 
         except ValueError:
             print("[+] Your option should be a number\n")

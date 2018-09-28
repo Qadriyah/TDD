@@ -18,4 +18,4 @@ after_success:
   - coveralls
 
 after_script:
-  - codeclimate-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
+  - codeclimate-test-reporter --file .coveragerc

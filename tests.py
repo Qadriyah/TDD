@@ -79,5 +79,33 @@ class TestUserRegistration(unittest.TestCase):
     def test_login_user(self):
         """Tests if user login successfully"""
         self.app.register_user(self.user, self.validator)
-        response = self.app.login_user(self.user)
+        response = self.app.login_user(self.user.email, self.user.password)
         self.assertEqual(response, "Login successful")
+
+    def test_logout(self):
+        """Tests if user logs out successfully"""
+        self.app.register_user(self.user, self.validator)
+        self.app.login_user(self.user.email, self.user.password)
+        response = self.app.logout()
+        self.assertEqual(response, "You have logged out")
+
+    def test_change_password(self):
+        """Tests if password is chnaged successfully"""
+        self.app.register_user(self.user, self.validator)
+        self.app.login_user(self.user.email, self.user.password)
+        response = self.app.change_password("mUkungu$.001", "Dick@22")
+        self.assertEqual(response, "Password has been changed successfully")
+
+    def test_change_email(self):
+        """Tests if email changes successfully"""
+        self.app.register_user(self.user, self.validator)
+        self.app.login_user(self.user.email, self.user.password)
+        response = self.app.change_email("mUkungu$.001", "berkins@yahoo.com")
+        self.assertEqual(response, "Email changed successfully")
+
+    def test_authenticate_user(self):
+        """Tests if user exists"""
+        self.app.register_user(self.user, self.validator)
+        response = self.app.authenticate_user(
+            "becks@gmail.com", "mUkungu$.001")
+        self.assertEqual(response[0], True)

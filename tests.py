@@ -36,9 +36,9 @@ class TestUserRegistration(unittest.TestCase):
 
     def test_password(self):
         """
-        Tests if password is not less than 4 characters, contains\
-        a capital letter, a small letter, a digit and a special\
-        character
+            Tests if password is not less than 4 characters, contains
+            a capital letter, a small letter, a digit and a special
+            character
         """
         is_password = self.validator.validate_password()
         self.assertEqual(True, is_password,
@@ -46,8 +46,8 @@ class TestUserRegistration(unittest.TestCase):
 
     def test_username(self):
         """
-        Tests if the username is not the same as name and username\
-        not less than 4 characters
+            Tests if the username is not the same as name and username
+            not less than 4 characters
         """
         is_name = self.validator.validate_username()
         self.assertEqual(True, is_name,

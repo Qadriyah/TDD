@@ -31,7 +31,7 @@ class MainApp:
             menu_options = list(menu.keys())
             if selected_option not in menu_options:
                 print("[+] The selected item does not exists\n")
-                return self.main()
+                self.main()
 
             if selected_option == 1:
                 print("CHANGE YOUR EMAIL")
@@ -42,7 +42,7 @@ class MainApp:
                 time.sleep(2)
                 print("[+] {}\n".format(response))
                 print("\nYou are logged in as {}\n".format(self.session[0]))
-                return self.main()
+                self.main()
 
             if selected_option == 2:
                 print("CHANGE YOUR PASSWORD\n")
@@ -54,25 +54,15 @@ class MainApp:
                 print("[+] Logging out...")
                 time.sleep(2)
                 print("[+] {}\n".format(response))
-                return self.login()
+                self.login()
 
             if selected_option == 3:
                 table = BeautifulTable()
-                table.column_headers = ["#",
-                                        "Name",
-                                        "Username",
-                                        "Age",
-                                        "Gender",
-                                        "Email",
-                                        "Status"]
+                table.column_headers = [
+                    "#", "Name", "Username", "Age", "Gender", "Email", "Status"]
                 for index, user in enumerate(self.users.values()):
-                    table.append_row([index+1,
-                                      user.name,
-                                      user.username,
-                                      user.age,
-                                      user.gender,
-                                      user.email,
-                                      user.status])
+                    table.append_row(
+                        [index+1, user.name, user.username, user.age, user.gender, user.email, user.status])
                 table._column_alignments["Name"] = BeautifulTable.ALIGN_LEFT
                 table._column_alignments["Username"] = BeautifulTable.ALIGN_LEFT
                 table._column_alignments["Gender"] = BeautifulTable.ALIGN_LEFT
@@ -89,7 +79,7 @@ class MainApp:
                 print("[+] Logging out...")
                 time.sleep(2)
                 print("[+] {}\n".format(response))
-                return
+            return
 
         except ValueError:
             print("[+] Your option should be a number\n")
@@ -130,9 +120,9 @@ class MainApp:
                 print("[+] {}\n".format(response))
                 #  Check if user is already logged in
                 if len(self.session) > 0:
-                    return self.main()
+                    self.main()
 
-                return self.login()
+                self.login()
             print("[+] {}".format(response))
             return self.register()
 
